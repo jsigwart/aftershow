@@ -9,9 +9,21 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@audius/sdk": "^12.0.1",
+    "@aws-sdk/client-s3": "^3.997.0",
+    "@aws-sdk/s3-request-presigner": "^3.997.0",
+    "@solana/pay": "^0.2.6",
+    "@solana/spl-token": "^0.4.14",
+    "@solana/wallet-adapter-react": "^0.15.39",
+    "@solana/wallet-adapter-react-ui": "^0.9.39",
+    "@solana/wallet-adapter-wallets": "^0.19.37",
+    "@solana/web3.js": "^1.98.4",
+    "@supabase/supabase-js": "^2.97.0",
     "next": "16.1.6",
+    "qrcode.react": "^4.2.0",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "zustand": "^5.0.11"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
