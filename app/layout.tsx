@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { WalletProvider } from "./components/WalletProvider";
+import { Header } from "./components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "music trenches",
-  description: "music trenches",
+  title: "AfterShow | Relive the Night",
+  description: "Your concert ticket unlocks the setlist, fan cams, and exclusive content from the show. Built on Solana, powered by Audius.",
 };
 
 export default function RootLayout({
@@ -27,7 +29,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <WalletProvider>
+          <Header />
+          <main className="min-h-screen">
+            {children}
+          </main>
+        </WalletProvider>
       </body>
     </html>
   );
