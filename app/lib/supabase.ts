@@ -1,12 +1,30 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || ''
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+// Create client only if URL is provided
+let supabaseClient: SupabaseClient | null = null
+
+export const supabase = (() => {
+  if (!supabaseUrl || !supabaseAnonKey) {
+    // Return a mock client for build time
+    return null
+  }
+  if (!supabaseClient) {
+    supabaseClient = createClient(supabaseUrl, supabaseAnonKey)
+  }
+  return supabaseClient
+})()
 
 // Server-side client with service role key
-export function createServerSupabase() {
-  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!
+export function createServerSupabase(): SupabaseClient | null {
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || ''
+
+  if (!supabaseUrl || !supabaseServiceKey) {
+    console.warn('Supabase not configured - using mock data')
+    return null
+  }
+
   return createClient(supabaseUrl, supabaseServiceKey)
 }

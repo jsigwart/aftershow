@@ -6,13 +6,18 @@ export async function GET(request: NextRequest) {
   try {
     const supabase = createServerSupabase()
 
+    if (!supabase) {
+      // Return mock data when Supabase is not configured
+      return NextResponse.json(MOCK_SHOWS)
+    }
+
     const { data, error } = await supabase
       .from('shows')
       .select('*')
       .order('date', { ascending: false })
 
     if (error) {
-      // Fall back to mock data if Supabase is not configured
+      // Fall back to mock data if Supabase query fails
       console.error('Supabase error:', error)
       return NextResponse.json(MOCK_SHOWS)
     }

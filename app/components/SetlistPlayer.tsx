@@ -2,13 +2,18 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { SetlistTrack } from '@/app/types'
-import { getStreamUrl } from '@/app/lib/audius'
 import { useAppStore } from '@/app/lib/store'
 
 interface SetlistPlayerProps {
   setlist: SetlistTrack[]
   artistName: string
   isLocked: boolean
+}
+
+const AUDIUS_API_BASE = 'https://discoveryprovider.audius.co/v1'
+
+function getStreamUrl(trackId: string): string {
+  return `${AUDIUS_API_BASE}/tracks/${trackId}/stream?app_name=AfterShow`
 }
 
 export function SetlistPlayer({ setlist, artistName, isLocked }: SetlistPlayerProps) {
@@ -34,7 +39,7 @@ export function SetlistPlayer({ setlist, artistName, isLocked }: SetlistPlayerPr
     // For demo, we'll use a placeholder since we don't have real Audius track IDs
     // In production, this would fetch the actual stream URL
     if (track.audius_track_id) {
-      const url = await getStreamUrl(track.audius_track_id)
+      const url = getStreamUrl(track.audius_track_id)
       setStreamUrl(url)
     } else {
       // Demo mode: show that track would play
