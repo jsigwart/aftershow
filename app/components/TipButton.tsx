@@ -43,8 +43,6 @@ export function TipButton({ artistName, artistWallet }: TipButtonProps) {
       )
 
       const signature = await sendTransaction(transaction, connection)
-
-      // Wait for confirmation
       await connection.confirmTransaction(signature, 'confirmed')
 
       setTxSignature(signature)
@@ -62,24 +60,24 @@ export function TipButton({ artistName, artistWallet }: TipButtonProps) {
 
   return (
     <div className="card">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-medium text-charcoal">Support the Artist</h3>
-        <span className="text-sm text-charcoal-light">via Solana Pay</span>
+      <div className="flex items-center justify-between mb-4 gap-4">
+        <h3 className="text-lg font-semibold text-ivory">Support the Artist</h3>
+        <span className="text-sm text-gold">via Solana Pay</span>
       </div>
 
       {!publicKey ? (
-        <p className="text-charcoal-light text-center py-4">
+        <p className="text-smoke text-center py-4">
           Connect your wallet to tip {artistName}
         </p>
       ) : txSignature ? (
         <div className="text-center py-4">
           <div className="text-2xl mb-2">✨</div>
-          <p className="text-charcoal mb-2">Thanks for supporting {artistName}!</p>
+          <p className="text-ivory mb-2">Thanks for supporting {artistName}!</p>
           <a
             href={`https://explorer.solana.com/tx/${txSignature}?cluster=devnet`}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-sage-dark hover:underline"
+            className="text-sm text-gold hover:underline"
           >
             View transaction →
           </a>
@@ -95,7 +93,7 @@ export function TipButton({ artistName, artistWallet }: TipButtonProps) {
             </button>
           ) : (
             <div className="space-y-3">
-              <p className="text-sm text-charcoal-light text-center">
+              <p className="text-sm text-smoke text-center">
                 Choose tip amount (devnet SOL)
               </p>
               <div className="grid grid-cols-3 gap-2">
@@ -112,14 +110,14 @@ export function TipButton({ artistName, artistWallet }: TipButtonProps) {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="w-full text-sm text-charcoal-light hover:text-charcoal"
+                className="w-full text-sm text-smoke hover:text-ivory"
               >
                 Cancel
               </button>
             </div>
           )}
           {error && (
-            <p className="text-sm text-red-500 mt-2 text-center">{error}</p>
+            <p className="text-sm text-red-400 mt-2 text-center">{error}</p>
           )}
         </>
       )}

@@ -10,7 +10,6 @@ export function WalletButton() {
   const { setVisible } = useWalletModal()
   const { setWalletAddress, setConnected, loadUserAssets, disconnect: storeDisconnect } = useAppStore()
 
-  // Sync wallet state with app store
   useEffect(() => {
     if (connected && publicKey) {
       const address = publicKey.toBase58()
@@ -39,11 +38,11 @@ export function WalletButton() {
   return (
     <button
       onClick={handleClick}
-      className="btn-soft flex items-center gap-2"
+      className={connected ? 'btn-soft flex items-center gap-2 font-medium' : 'btn-primary flex items-center gap-2'}
     >
       {connected && publicKey ? (
         <>
-          <span className="w-2 h-2 bg-sage rounded-full"></span>
+          <span className="w-2.5 h-2.5 bg-gold rounded-full shadow-[0_0_18px_rgba(245,196,0,0.6)]"></span>
           <span>{truncateAddress(publicKey.toBase58())}</span>
         </>
       ) : (

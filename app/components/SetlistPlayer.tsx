@@ -27,7 +27,6 @@ export function SetlistPlayer({ setlist, artistName, isLocked }: SetlistPlayerPr
     if (isLocked) return
 
     if (currentTrackIndex === index && isPlaying) {
-      // Pause current track
       audioRef.current?.pause()
       setPlaying(false)
       return
@@ -36,13 +35,10 @@ export function SetlistPlayer({ setlist, artistName, isLocked }: SetlistPlayerPr
     setCurrentTrackIndex(index)
     setIsLoading(true)
 
-    // For demo, we'll use a placeholder since we don't have real Audius track IDs
-    // In production, this would fetch the actual stream URL
     if (track.audius_track_id) {
       const url = getStreamUrl(track.audius_track_id)
       setStreamUrl(url)
     } else {
-      // Demo mode: show that track would play
       setStreamUrl(null)
     }
 
@@ -60,10 +56,10 @@ export function SetlistPlayer({ setlist, artistName, isLocked }: SetlistPlayerPr
   if (isLocked) {
     return (
       <div className="card locked">
-        <h3 className="text-lg font-medium text-charcoal mb-4">Setlist Vault</h3>
+        <h3 className="text-lg font-semibold text-ivory mb-4">Setlist Vault</h3>
         <div className="text-center py-8">
           <div className="text-4xl mb-4">🔒</div>
-          <p className="text-charcoal-light">
+          <p className="text-smoke">
             Connect your wallet and verify your ticket to unlock the setlist
           </p>
         </div>
@@ -74,8 +70,8 @@ export function SetlistPlayer({ setlist, artistName, isLocked }: SetlistPlayerPr
   return (
     <div className="card">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-medium text-charcoal">Setlist Vault</h3>
-        <span className="text-sm text-sage-dark">{setlist.length} tracks</span>
+        <h3 className="text-lg font-semibold text-ivory">Setlist Vault</h3>
+        <span className="text-sm text-gold">{setlist.length} tracks</span>
       </div>
 
       <div className="space-y-2">
@@ -83,40 +79,38 @@ export function SetlistPlayer({ setlist, artistName, isLocked }: SetlistPlayerPr
           <button
             key={index}
             onClick={() => handlePlayTrack(index, track)}
-            className={`w-full text-left p-3 rounded-lg border transition-all ${
+            className={`w-full text-left p-3 rounded-2xl border transition-all ${
               currentTrackIndex === index
-                ? 'border-sage bg-sage/10'
-                : 'border-warm-gray hover:border-sage'
+                ? 'border-gold bg-gold/10 shadow-[0_12px_30px_rgba(245,196,0,0.08)]'
+                : 'border-bronze-line hover:border-gold'
             }`}
           >
             <div className="flex items-center gap-3">
-              <span className="w-6 text-center text-charcoal-light text-sm">
+              <span className="w-6 text-center text-smoke text-sm">
                 {currentTrackIndex === index && isPlaying ? (
-                  <span className="text-sage-dark">▶</span>
+                  <span className="text-gold">▶</span>
                 ) : (
                   track.position
                 )}
               </span>
               <div className="flex-1">
-                <p className="text-charcoal">{track.title}</p>
-                <p className="text-sm text-charcoal-light">{artistName}</p>
+                <p className="text-ivory">{track.title}</p>
+                <p className="text-sm text-smoke">{artistName}</p>
               </div>
               {isLoading && currentTrackIndex === index && (
-                <span className="text-sm text-charcoal-light">Loading...</span>
+                <span className="text-sm text-smoke">Loading...</span>
               )}
             </div>
           </button>
         ))}
       </div>
 
-      {/* Audio element for actual playback */}
       {streamUrl && (
         <audio
           ref={audioRef}
           src={streamUrl}
           onEnded={() => {
             setPlaying(false)
-            // Auto-play next track
             if (currentTrackIndex !== null && currentTrackIndex < setlist.length - 1) {
               handlePlayTrack(currentTrackIndex + 1, setlist[currentTrackIndex + 1])
             }
@@ -124,10 +118,9 @@ export function SetlistPlayer({ setlist, artistName, isLocked }: SetlistPlayerPr
         />
       )}
 
-      {/* Demo mode indicator */}
       {!streamUrl && currentTrackIndex !== null && (
-        <div className="mt-4 p-3 bg-sage/10 rounded-lg text-center">
-          <p className="text-sm text-charcoal-light">
+        <div className="mt-4 p-3 rounded-2xl border border-bronze-line bg-gold/10 text-center">
+          <p className="text-sm text-smoke">
             Demo mode: In production, this would stream from Audius
           </p>
         </div>
