@@ -134,3 +134,8 @@ app/
 ## License
 
 MIT
+
+### Team
+Mandy Pham
+Julie Sigwart
+Jarren San Jose
