@@ -99,14 +99,6 @@ No external services required for a full demo.
 - NFT ticket concept using cNFTs on Solana
 - Ticket-gated content unlocks
 
-## Design
-
-Japanese-inspired minimal aesthetic:
-- Warm cream background (#FAF8F5)
-- Charcoal text (#4A4A4A)
-- Sage green accents (#A8B5A0)
-- Clean, spacious layout
-
 ## Project Structure
 
 ```
@@ -142,7 +134,3 @@ app/
 ## License
 
 MIT
-
----
-
-Built with caffeine and vibes for the Solana Graveyard Hack.
