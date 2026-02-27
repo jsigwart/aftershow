@@ -1,6 +1,3 @@
-Absolutely — here’s a more human, warmer version that still feels polished for a hackathon entry:
-
-````md
 # AfterShow
 
 **The show doesn't end when you leave.**
