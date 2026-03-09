@@ -1,5 +1,7 @@
 # AfterShow
 
+**WINNER -** KYDLabs x Audius Graveyard Hackathon for best music + ticketing project - https://x.com/audius/status/2031052554369429677
+
 **The show doesn't end when you leave.**
 
 AfterShow is a fan experience layer for live music. It turns a concert ticket into an ongoing connection to the show, the artist, and the community around that night.
