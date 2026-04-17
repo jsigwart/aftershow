@@ -1,6 +1,6 @@
 # AfterShow
 
-**WINNER -** KYDLabs x Audius Graveyard Hackathon for best music + ticketing project - https://x.com/audius/status/2031052554369429677
+## **WINNER -** Solana Graveyard Hackathon for best music + ticketing project - KYDLabs x Audius https://x.com/audius/status/2031052554369429677
 
 **The show doesn't end when you leave.**
 
